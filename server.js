@@ -17,7 +17,7 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/appDB";
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI);
 // require routes
-
+require('./routes/user-api-routes.js') (app);
 // listen
 app.listen(PORT, function() {
     console.log("App is listening on port: " + PORT);
