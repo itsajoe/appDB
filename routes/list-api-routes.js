@@ -19,7 +19,7 @@ module.exports = function(app) {
         })
     });
     app.get('/list', function(req, res) {
-        db.List.findAll()
+        db.List.find()
         .then(function(data) {
             res.json(data);
         })
