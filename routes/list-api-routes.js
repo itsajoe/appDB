@@ -11,7 +11,7 @@ module.exports = function(app) {
             res.json(data);
         })
     });
-    app.get('/list', function(req, res) {
+    app.get('/list/:id', function(req, res) {
         db.List.findOne({_id: req.params.id})
         .populate("listItems")
         .then(function(data) {
