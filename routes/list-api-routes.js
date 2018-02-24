@@ -17,5 +17,12 @@ module.exports = function(app) {
         .then(function(data) {
             res.json(data);
         })
+    });
+    app.get('/list', function(req, res) {
+        db.List.findAll()
+        .then(function(data) {
+            res.json(data);
+        })
     })
+
 }
