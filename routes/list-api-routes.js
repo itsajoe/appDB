@@ -12,7 +12,7 @@ module.exports = function(app) {
         })
     });
     app.get('/list', function(req, res) {
-        db.List.findOne({_id: req.body.id})
+        db.List.findOne({_id: req.params.id})
         .populate("listItems")
         .then(function(data) {
             res.json(data);
