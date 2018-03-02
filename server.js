@@ -10,8 +10,7 @@ var app = express();
 // configure middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.text());
-app.use(bodyParser.json({ type: 'application/vnd.api+json'}));
+
 // connect to db
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/appDB";
 mongoose.Promise = Promise;
@@ -20,6 +19,7 @@ mongoose.connect(MONGODB_URI);
 require('./routes/user-api-routes.js') (app);
 require('./routes/list-api-routes.js') (app);
 require('./routes/listItems-api-routes.js') (app);
+require('./routes/coupon-api-routes.js') (app);
 // listen
 app.listen(PORT, function() {
     console.log("App is listening on port: " + PORT);

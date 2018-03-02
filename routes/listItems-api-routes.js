@@ -31,4 +31,11 @@ module.exports = function(app) {
         res.send(err);
       })
     });
+    app.get('/listItem/:id', function(req, res) {
+      db.ListItem.findOne({_id: req.params.id})
+      .populate("coupon")
+      .then(function(data) {
+          res.json(data);
+      })
+  });
 }
