@@ -2,14 +2,14 @@
 var db = require('../models');
 // export function
 module.exports = function(app) {
-    app.post('/new/listItem', function(req, res) {
+    app.post('/new/listItem/:id', function(req, res) {
         var listItem = {
             name: req.body.name
         }
         db.ListItem
       .create(listItem)
       .then(function(data) {
-        return db.List.findOneAndUpdate({_id: req.body.id}, {$addToSet: {listItems: data._id}}, {new: true});
+        return db.List.findOneAndUpdate({_id: req.params.id}, {$addToSet: {listItems: data._id}}, {new: true});
       })
       .then(function(response) {
         res.json(response);
