@@ -38,4 +38,10 @@ module.exports = function(app) {
           res.json(data);
       })
   });
+  app.delete('/delete/listItem/:id', function(req, res) {
+    db.ListItem.delete({_id: req.params.id})
+    .then(function(data) {
+        res.json(data);
+    })
+});
 }
