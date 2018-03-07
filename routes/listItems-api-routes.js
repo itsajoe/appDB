@@ -39,7 +39,7 @@ module.exports = function(app) {
       })
   });
   app.delete('/delete/listItem/:id', function(req, res) {
-    db.ListItem.delete({_id: req.params.id})
+    db.ListItem.deleteOne({_id: req.params.id})
     .then(function(data) {
         res.json(data);
     })
