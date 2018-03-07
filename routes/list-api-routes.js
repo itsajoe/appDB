@@ -23,6 +23,12 @@ module.exports = function(app) {
         .then(function(data) {
             res.json(data);
         })
-    })
+    });
+    app.delete('/delete/list/:id', function(req, res) {
+        db.List.deleteOne({_id: req.params.id})
+        .then(function(data) {
+            res.json(data);
+        })
+    });
 
 }
