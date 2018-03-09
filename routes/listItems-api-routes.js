@@ -18,12 +18,12 @@ module.exports = function(app) {
         res.json(err);
       });
     });
-    app.put('/updateItem', function(req, res) {
+    app.put('/updateItem/:id', function(req, res) {
       var updated = {
         name: req.body.name,
         isBought: req.body.isBought
       };
-      db.ListItem.findOneAndUpdate({_id: req.body.id}, {name: req.body.name, isBought: req.body.isBought}, {new: true})
+      db.ListItem.findOneAndUpdate({_id: req.params.id}, {name: req.body.name, isBought: req.body.isBought}, {new: true})
       .then(function(data) {
         res.json(data);
       })
