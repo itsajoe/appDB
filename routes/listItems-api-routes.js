@@ -44,4 +44,10 @@ module.exports = function(app) {
         res.json(data);
     })
 });
+app.delete('/deleteMany/:id', function(req, res) {
+  db.ListItem.deleteMany({_id: req.params.id, isBought: true})
+  .then(function(data) {
+      res.json(data);
+  })
+});
 }
