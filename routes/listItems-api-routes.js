@@ -45,7 +45,8 @@ module.exports = function(app) {
     })
 });
 app.delete('/deleteMany/:id', function(req, res) {
-  db.ListItem.deleteMany({_id: req.params.id, isBought: true})
+  db.List.find({_id: req.params.id})
+  .deleteMany({isBought: true})
   .then(function(data) {
       res.json(data);
   })
