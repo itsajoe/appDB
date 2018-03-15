@@ -18,4 +18,22 @@ module.exports = function(app) {
         res.json(err);
       });
     });
+    app.get('/all/coupons/:id', function(req, res) {
+      db.List.findOne({_id: req.params.id})
+        .populate("listItems")
+        .then(function(data) {
+            var listCoups = [];
+            // console.log(data);
+            for (let i = 0; i < data.listItems.length; i++) {
+                listCoups.push(data.listItems[i].coupon);
+              }
+              // console.log(listCoups);
+              db.Coupon.find({_id: listCoups})
+              .then(function(data) {
+                res.send(data);
+              }).catch(function(err) {
+                res.send(err);
+              })
+            })
+    });
 };
