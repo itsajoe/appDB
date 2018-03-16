@@ -24,6 +24,10 @@ var UserSchema = new Schema ({
         unique: true,
         match: [/.+\@.+\..+/, "Please enter a valid e-mail address"]
       },
+      lists: [{
+        type: Schema.Types.ObjectId,
+         ref: "List"
+    }],
       userCreated: {
         type: Date,
         default: Date.now

@@ -24,6 +24,14 @@ module.exports = function(app) {
             });
         });
     });
+
+    app.get('/user/:id', function(req, res) {
+        db.User.findOne({_id: req.params.id})
+        .populate("lists")
+        .then(function(data) {
+            res.json(data.lists);
+        })
+    });
     
     app.post("/login", function(req, res){
         db.User.findOne({
@@ -54,5 +62,6 @@ module.exports = function(app) {
             });
         })
     })
+    
 }
 

@@ -11,6 +11,22 @@ module.exports = function(app) {
             res.json(data);
         })
     });
+    app.post('/new/list/:id', function(req, res) {
+        var list = {
+            store: req.body.store
+        }
+        db.List
+      .create(list)
+      .then(function(data) {
+        return db.User.findOneAndUpdate({_id: req.params.id}, {$addToSet: {lists: data._id}}, {new: true});
+      })
+      .then(function(response) {
+        res.json(response);
+      })
+      .catch(function(err) {
+        res.json(err);
+      });
+    });
     app.get('/list/:id', function(req, res) {
         db.List.findOne({_id: req.params.id})
         .populate("listItems")
